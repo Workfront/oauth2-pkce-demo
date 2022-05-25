@@ -1,17 +1,20 @@
-# OAuth2 PKCE Demo
+# Adobe Workfront OAuth2 PKCE Demo
 
-Sample demo app that will let me understand how to connect to Workfront API with OAuth2 PKCE flow.
+Sample demo app that will let you understand how to connect to Adobe Workfront API through OAuth2 PKCE flow.
+
 ## Introduction
 
-The OAuth Code Flow is one of the more typical and flexible token flows, and, with that, one of the most popular. The details of this flow are not covered by this article, but can be found in the [code flow overview](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-proof-key-for-code-exchange-pkce) article on the Curity Web site.
+Proof Key for Code Exchange (PKCE) is a technique described in [RFC7636](https://tools.ietf.org/html/rfc7636), and is used for SPA or native apps. More details on how to configure the OAuth2 application for PKCE can be found in the [Create an OAuth2 single-page web application using PKCE](https://one.workfront.com/s/document-item?bundleId=the-new-workfront-experience&topicId=Content%2FAdministration_and_Setup%2FConfigure_integrations%2Fcreate-oauth-application.htm&_LANG=enus) page.
 
-Proof Key for Code Exchange (PKCE) is a technique described in [RFC7636](https://tools.ietf.org/html/rfc7636), and is used to mitigate the risk of the authorization code being hijacked. More details on how to configure the Curity Identity Server to enable PKCE can be found in the [configuring PKCE in Curity](https://curity.io/resources/learn/pkce/) resource page.
+More details on how the PKCE flow works can be found in article: [Configure and use your organization’s custom OAuth 2 applications using PKCE flow](https://one.workfront.com/s/document-item?bundleId=the-new-workfront-experience&topicId=Content%2FWF_API%2FAPI%2Foauth-app-pkce-flow.htm&_LANG=enus)
 
-The rest of this writeup explains how these technologies can be used in the JavaScript programming language. It is intentionally simple, so that the concepts are not obscured by superfluous details.
+
 
 ## Serving the Sample HTML File
 
-The HTML needs to be served somehow from a Web server. Because the client is just a static HTML page, this can be done with a trivial server configuration. These are a couple of different ways to very easily server the static HTML page:
+The HTML needs to be served somehow from a Web server. Because the client is just a static HTML page, this can be done with a trivial server configuration. Bellow are a couple of different ways to very easily server the static HTML page. 
+
+NOTE: you can use your own way of searching HTML or even copy the JS function to your own web application. This page is just for educational proposes.
 
 ```sh
 $ npx http-server -p <port>
@@ -26,4 +29,9 @@ Python 2 — $ python -m SimpleHTTPServer <port>
 Python 3 — $ python -m http.server <port>
 ```
 
-These will not use TLS, but are fast and easy ways to serve the HTML file without setting up any infrastructure
+## Update HTML file
+ - Update HTML file to set right clientID that you have created by following steps in the article [Create an OAuth2 single-page web application using PKCE](https://one.workfront.com/s/document-item?bundleId=the-new-workfront-experience&topicId=Content%2FAdministration_and_Setup%2FConfigure_integrations%2Fcreate-oauth-application.htm&_LANG=enus)
+ - Make sure the client APP you have created in Workfront has the right redirect URL of the page where you serve this html
+ 
+ NOTE: localhost cannot be used as a valid redirect URL, if you don't have an externally available host, you can use Ngrok.
+
